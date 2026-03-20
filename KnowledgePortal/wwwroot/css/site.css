@@ -1,0 +1,649 @@
+﻿/* ===== GLOBAL VARIABLES (Default Light Mode) ===== */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    /* Light Mode Colors */
+    --bg-gradient-start: #f8fafc;
+    --bg-gradient-end: #e2e8f0;
+    --card-bg: rgba(255, 255, 255, 0.9); /* Glass effect */
+    --input-bg: #f8fafc;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #cbd5e1;
+    --radius: 8px;
+    --input-height: 50px;
+    --input-font-size: 16px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== DARK MODE OVERRIDES (System Setting) ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Mode Backgrounds */
+        --bg-gradient-start: #0f172a;
+        --bg-gradient-end: #1e293b;
+        --card-bg: rgba(30, 41, 59, 0.95);
+        --input-bg: #334155;
+        /* Dark Mode Text */
+        --text-dark: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border-color: #475569;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Invert Search Icon Color for visibility */
+    .search-box {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E") !important;
+        color: white;
+    }
+
+    /* Ensure Logo is visible */
+    .company-logo {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 4px;
+        border-radius: 4px;
+    }
+
+    .btn-secondary {
+        background-color: #334155;
+        color: #f1f5f9;
+    }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+    .btn-icon {
+        border-color: #475569;
+        color: #94a3b8;
+    }
+
+        .btn-icon:hover {
+            color: #f1f5f9;
+            border-color: #94a3b8;
+        }
+
+    li {
+        border-bottom-color: #334155 !important;
+    }
+
+        li:hover {
+            background-color: #334155;
+        }
+
+    h3 {
+        border-bottom-color: #334155 !important;
+        color: #e2e8f0 !important;
+    }
+
+    .dept-card:hover {
+        background-color: #334155 !important;
+        border-color: var(--primary-color) !important;
+    }
+}
+
+/*body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;*/
+/*    color: var(--text-dark);
+     🔥 UPDATED BACKGROUND IMAGE PATH 
+    background-color: #f8fafc;
+     Use relative path from css folder to images folder 
+    background-image: url('../images/bg.jpg');*/
+    /*background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}*/
+
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+/*    overflow: hidden;*/
+    /* Neat AUMOVIO gradient (Orange → Purple) */
+    background: linear-gradient( 135deg, #FF4208 0%, /* AUMOVIO Orange */
+    #FF693B 30%, /* Orange 300 */
+    #7A3DB8 70%, /* Soft Purple blend */
+    #4827AF 100% /* AUMOVIO Purple */
+    );
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ... (Rest of the CSS remains exactly the same) ... */
+
+/* ===== HEADER ===== */
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    /* 🔥 FORCED LOGO SIZE */
+    .header-left .company-logo {
+        height: 40px !important;
+        width: auto !important;
+        max-width: 150px !important;
+        object-fit: contain;
+        display: block;
+        flex-shrink: 0;
+    }
+
+/* Fallback */
+.company-logo {
+    height: 40px !important;
+    width: auto !important;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.025em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 0 20px;
+    height: 40px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    user-select: none;
+}
+
+    .btn:active {
+        transform: translateY(1px);
+    }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+    .btn-primary:hover {
+        background-color: var(--primary-hover);
+    }
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: var(--text-dark);
+}
+
+    .btn-secondary:hover {
+        background-color: #cbd5e1;
+    }
+
+.btn-danger {
+    background-color: #fee2e2;
+    color: var(--danger-color);
+}
+
+    .btn-danger:hover {
+        background-color: #fecaca;
+    }
+
+.btn-icon {
+    padding: 0;
+    width: 40px;
+    background: transparent;
+    color: var(--text-muted);
+    border: 2px solid #e2e8f0;
+}
+
+    .btn-icon:hover {
+        border-color: var(--text-muted);
+        color: var(--text-dark);
+    }
+
+.btn-submit {
+    flex: 0 0 150px;
+    height: var(--input-height);
+    white-space: nowrap;
+}
+
+.btn-action {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    opacity: 0.7;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.btn-delete {
+    color: var(--danger-color);
+}
+
+    .btn-delete:hover {
+        background-color: #fee2e2;
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+/* ===== CARDS & FORMS ===== */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 32px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.3s ease;
+}
+
+/* 🔥 Department Specific Card Styles */
+.card-prod {
+    border-top: 5px solid #f59e0b;
+}
+/* Orange */
+.card-hr {
+    border-top: 5px solid #ec4899;
+}
+/* Pink */
+.card-digi {
+    border-top: 5px solid #3b82f6;
+}
+/* Blue */
+.card-it {
+    border-top: 5px solid #06b6d4;
+}
+/* Cyan (IT Support) */
+
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #334155;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 🔥 FIX OVERLAPPING: Add Specific Margins for Dashboard Views */
+#dashboard-view,
+#department-detail-view {
+    margin-bottom: 80px !important; /* Force space between grid and documents */
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-control {
+    height: var(--input-height);
+    padding: 0 15px;
+    font-size: var(--input-font-size);
+    font-family: inherit;
+    color: var(--text-dark);
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+    .form-control:focus {
+        background-color: #fff;
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+/* ===== SEARCH BOX (FIXED) ===== */
+.search-container {
+    margin: 40px 0;
+    position: relative;
+}
+
+.search-box {
+    width: 100%;
+    height: 60px; /* 🔥 Height: 60px (Big) */
+    font-size: 1.1rem;
+    color: var(--text-dark); /* Use variable */
+    background-color: var(--card-bg); /* Use variable */
+    border: 1px solid var(--border-color); /* Use variable */
+    border-radius: 50px !important;
+    padding-left: 60px; /* Pushes text away from icon */
+    padding-right: 25px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+    .search-box:focus {
+        border-color: var(--primary-color);
+        box-shadow: var(--shadow-md), 0 0 0 3px rgba(37, 99, 235, 0.15);
+        outline: none;
+        transform: translateY(-1px);
+    }
+
+    .search-box::placeholder {
+        color: var(--text-muted);
+    }
+
+/* ===== 🔥 DEPARTMENT DASHBOARD CARDS ===== */
+.dept-card {
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px 40px 20px;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    margin-bottom: 0 !important;
+    min-height: 220px;
+}
+
+    .dept-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.15);
+        background-color: #fff; /* Ensure bg is solid on hover */
+    }
+
+.dept-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.dept-card h2 {
+    border: none !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+}
+
+.dept-desc {
+    color: var(--text-dark);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    max-width: 90%;
+}
+
+.dept-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.dept-arrow {
+    position: absolute;
+    bottom: 15px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.dept-card:hover .dept-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== 🔥 LINK GRID (APP LAUNCHER STYLE) ===== */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px 10px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    min-height: 110px;
+    justify-content: center;
+}
+
+    .link-card:hover {
+        background-color: var(--card-bg);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-color);
+    }
+
+.link-icon-box {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.link-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+/* Admin Overlay on Card */
+.card-admin-overlay {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    gap: 2px;
+}
+
+.link-card:hover .card-admin-overlay {
+    display: flex;
+}
+
+/* Doc List Items */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer */
+.footer-note {
+    text-align: center;
+    margin-top: 60px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    padding-bottom: 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Tab Styles */
+.btn-tab {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+    .btn-tab:hover {
+        background-color: var(--input-bg);
+        color: var(--text-dark);
+    }
+
+    .btn-tab.active {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .page-container {
+        margin: 0;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .header-actions, .search-container, #addSection, #addUserSection, .btn-action, .footer-note {
+        display: none !important;
+    }
+
+    .card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin-bottom: 40px;
+    }
+
+        .card h2 {
+            border-bottom: 2px solid #000;
+            color: #000;
+        }
+
+    ul li {
+        border-bottom: 1px solid #ddd;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+}

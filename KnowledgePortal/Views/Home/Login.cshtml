@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<!-- 🔥 Full-screen AUMOVIO Gradient Background -->
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #FF4208 0%, #FF693B 30%, #7A3DB8 70%, #4827AF 100%);">
+
+    <!-- Login Card -->
+    <div style="width: 100%; max-width: 400px; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #e2e8f0; margin: 20px;">
+
+        <!-- Added Logo Here -->
+        <div style="display: flex; justify-content: center; margin-bottom: 15px;">
+            <img src="/images/aumovio-logo.png"
+                 alt="Company Logo"
+                 draggable="false"
+                 style="max-height: 45px; object-fit: contain;" />
+        </div>
+
+        <h2 style="margin-bottom: 20px; text-align: center; color: #1e293b; display: flex; justify-content: center; border: none; padding-bottom: 0;">Portal Login</h2>
+
+        <div style="margin-bottom: 15px;">
+            <label style="display:block; margin-bottom: 5px; font-weight: 600; color: #334155;">Username</label>
+            <input type="text" id="username" autofocus style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" />
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <label style="display:block; margin-bottom: 5px; font-weight: 600; color: #334155;">Password</label>
+            <input type="password" id="password" style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box;" />
+        </div>
+
+        <!-- 🔥 CHANGED ID to 'submitLoginBtn' to avoid conflict with site.js -->
+        <button id="submitLoginBtn" onclick="login()" style="width: 100%; padding: 12px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 16px;">
+            Login
+        </button>
+
+        <p id="error" style="color: red; text-align: center; margin-top: 15px; display: none;"></p>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="/" style="color: #64748b; text-decoration: none; font-weight: 500;">&larr; Back to Portal</a>
+        </p>
+    </div>
+
+</div>
+
+<script>
+    // Trigger login on "Enter" key press & Focus Username
+    document.addEventListener("DOMContentLoaded", function() {
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+
+        if(usernameInput) {
+            usernameInput.focus();
+        }
+
+        const inputs = [usernameInput, passwordInput];
+        inputs.forEach(input => {
+            if(input) {
+                input.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        login();
+                    }
+                });
+            }
+        });
+    });
+
+    async function login() {
+        const u = document.getElementById('username').value.trim();
+        const p = document.getElementById('password').value;
+        const errorMsg = document.getElementById('error');
+
+        // Grab the newly renamed button ID
+        const btn = document.getElementById('submitLoginBtn');
+
+        if(!u || !p) {
+            errorMsg.innerText = "Please enter username and password";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        btn.innerText = "Logging in...";
+        btn.disabled = true;
+
+        try {
+            const res = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Username: u, Password: p })
+            });
+
+            if (res.ok) {
+                window.location.href = "/";
+            } else {
+                errorMsg.innerText = "Invalid credentials";
+                errorMsg.style.display = "block";
+                btn.innerText = "Login";
+                btn.disabled = false;
+            }
+        } catch (e) {
+            errorMsg.innerText = "Connection error";
+            errorMsg.style.display = "block";
+            btn.innerText = "Login";
+            btn.disabled = false;
+        }
+    }
+</script>

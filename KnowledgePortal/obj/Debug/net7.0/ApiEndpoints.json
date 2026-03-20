@@ -1,0 +1,150 @@
+[
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "CheckAuth",
+    "RelativePath": "api/admin/check-auth",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "AddDoc",
+    "RelativePath": "api/admin/doc/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "DocItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "DeleteDoc",
+    "RelativePath": "api/admin/doc/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "DocItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "UpdateDoc",
+    "RelativePath": "api/admin/doc/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "KnowledgePortal.Controllers.UpdateDocRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "AddLink",
+    "RelativePath": "api/admin/link/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "LinkItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "DeleteLink",
+    "RelativePath": "api/admin/link/delete",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "LinkItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "UpdateLink",
+    "RelativePath": "api/admin/link/update",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "KnowledgePortal.Controllers.UpdateLinkRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "Login",
+    "RelativePath": "api/admin/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "UserItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "Logout",
+    "RelativePath": "api/admin/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "KnowledgePortal.Controllers.AdminController",
+    "Method": "AddUser",
+    "RelativePath": "api/admin/user/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "UserItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

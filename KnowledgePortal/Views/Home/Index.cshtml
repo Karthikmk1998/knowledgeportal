@@ -1,0 +1,244 @@
+﻿@{
+    ViewData["Title"] = "Bangalore Plant Portal";
+}
+
+<div class="page-container" style="margin-top: 40px;">
+
+    <!-- Header Area -->
+    <div class="header-row">
+        <!-- LOGO & TITLE -->
+        <div class="header-left">
+            <img src="/images/aumovio-logo.png"
+                 alt="Company Logo"
+                 class="company-logo"
+                 draggable="false" />
+
+            <h1><i class="fa-solid fa-network-wired" style="color:#2563eb; margin-right:12px;"></i> Bangalore Plant Portal</h1>
+        </div>
+
+        <div class="header-actions">
+            <a id="loginBtn" href="/Home/Login" class="btn btn-secondary hidden">Login</a>
+            <button id="userToggleBtn" onclick="toggleUserSection()" class="btn btn-secondary hidden"><i class="fa-solid fa-user-plus"></i> Users</button>
+            <button id="logoutBtn" onclick="logout()" class="btn btn-danger hidden">Logout</button>
+            <button id="addToggleBtn" type="button" class="toggle-add btn hidden" onclick="toggleAddSection()"><i class="fa-solid fa-plus"></i> Add Resource</button>
+            <button onclick="toggleHelp()" class="btn btn-icon" title="Help"><i class="fa-solid fa-circle-question" style="font-size: 1.2em;"></i></button>
+        </div>
+    </div>
+
+    <div id="helpSection" class="card hidden" style="border-left: 5px solid #3b82f6; background-color: var(--input-bg);">
+        <!-- 🔥 FIX: Override the global flexbox styles for list items inside the help section -->
+        <style>
+            #helpSection li {
+                display: list-item;
+                border-bottom: none;
+                padding: 4px 0;
+                justify-content: flex-start;
+            }
+        </style>
+
+        <h2><i class="fa-solid fa-circle-info" style="color:#3b82f6;"></i> Help & Instructions</h2>
+        <div style="padding:0 10px; color:var(--text-dark); line-height: 1.6;">
+
+            <h3 style="font-size: 1.1rem; color: var(--primary-color); margin-bottom: 10px; border: none; padding: 0;">How to Add Resources (Admins Only)</h3>
+
+            <div style="margin-bottom: 15px;">
+                <strong>To Add a Link:</strong>
+                <ol style="margin-top: 5px; padding-left: 20px;">
+                    <li>Click the <strong>Add Resource</strong> button at the top right.</li>
+                    <li>Under "Add Links", choose the appropriate <strong>Category</strong> from the dropdown.</li>
+                    <li>Enter the <strong>Link Title</strong> and the destination <strong>URL</strong>.</li>
+                    <li><em>(Optional)</em> Enter a <strong>Description</strong> to provide more context.</li>
+                    <li>Click the <strong>Add Link</strong> button to save.</li>
+                </ol>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <strong>To Add an Internal Document:</strong>
+                <ol style="margin-top: 5px; padding-left: 20px;">
+                    <li>Click the <strong>Add Resource</strong> button.</li>
+                    <li>Under "Internal Documentation", choose the appropriate <strong>Category</strong>.</li>
+                    <li>Enter the <strong>Document Name</strong> and the <strong>File Path</strong> (e.g., SharePoint link or Confluence path).</li>
+                    <li><em>(Optional)</em> Enter a <strong>Description</strong>.</li>
+                    <li>Click the <strong>Add Doc</strong> button to save.</li>
+                </ol>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;" />
+
+            <p style="margin: 0;">
+                <i class="fa-solid fa-envelope" style="color: var(--text-muted); margin-right: 5px;"></i>
+                <strong>Need Help?</strong> If you have any queries, need assistance, or want to suggest a new resource, please contact the administrator:
+                <a href="mailto:karthik.m.k@aumovio.com" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Karthik M K</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Add User Section -->
+    <div id="addUserSection" class="card hidden" style="border-left: 5px solid #8b5cf6;">
+        <h2><i class="fa-solid fa-user-shield" style="color:#8b5cf6;"></i> Add New Admin User</h2>
+        <div class="input-group" style="margin-bottom:0;">
+            <div class="form-row">
+                <input type="text" id="newUsername" placeholder="New Username" class="form-control flex-1" />
+                <input type="text" id="newPassword" placeholder="New Password" class="form-control flex-1" />
+                <button type="button" onclick="addNewUser()" class="btn btn-primary btn-submit"><i class="fa-solid fa-user-plus"></i> Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Resource Section -->
+    <div id="addSection" class="card hidden">
+        <h2><i class="fa-solid fa-pen-to-square" style="color:#64748b;"></i> Manage Resources</h2>
+
+        <!-- Add Link Form -->
+        <div class="input-group">
+            <label class="section-label">Add Links</label>
+            <div class="form-row">
+                <select id="lcategory" class="form-control flex-2">
+                    <option value="" disabled selected>Category</option>
+                    <option value="MES">🏭 MES</option>
+                    <option value="PRODUCTION">⚙️ PRODUCTION</option>
+                    <option value="QUALITY">🧪 QUALITY</option>
+                    <option value="SAFETY">🦺 SAFETY (EHS)</option>
+                    <option value="LOGISTICS">🚚 LOGISTICS</option>
+                    <option value="FINANCE">💰 FINANCE</option>
+                    <option value="HR">👥 HR</option>
+                    <option value="IT SUPPORT">💻 IT SUPPORT</option>
+                    <option value="POWER BI">📊 REPORTS (BI)</option>
+                    <option value="SHAREPOINT">☁️ SHAREPOINT</option>
+                    <option value="General">📂 General</option>
+                </select>
+                <input type="text" id="ltitle" placeholder="Link Title" class="form-control flex-3" />
+                <input type="text" id="lurl" placeholder="URL" class="form-control flex-3" />
+            </div>
+            <div class="form-row">
+                <input type="text" id="ldescription" placeholder="Description (Optional)" class="form-control flex-1" />
+                <button type="button" id="btnAddLink" onclick="submitLink()" class="btn btn-primary btn-submit"><i class="fa-solid fa-check"></i> Add Link</button>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Add Doc Form -->
+        <div class="input-group" style="margin-bottom: 0;">
+            <label class="section-label">Internal Documentation</label>
+            <div class="form-row">
+                <select id="dcategory" class="form-control flex-2">
+                    <option value="" disabled selected>Category</option>
+                    <option value="MES">🏭 MES</option>
+                    <option value="PRODUCTION">⚙️ PRODUCTION</option>
+                    <option value="QUALITY">🧪 QUALITY</option>
+                    <option value="SAFETY">🦺 SAFETY (EHS)</option>
+                    <option value="LOGISTICS">🚚 LOGISTICS</option>
+                    <option value="FINANCE">💰 FINANCE</option>
+                    <option value="HR">👥 HR</option>
+                    <option value="IT SUPPORT">💻 IT SUPPORT</option>
+                    <option value="POWER BI">📊 REPORTS (BI)</option>
+                    <option value="SHAREPOINT">☁️ SHAREPOINT</option>
+                    <option value="General">📂 General</option>
+                </select>
+                <input type="text" id="dname" placeholder="Document Name" class="form-control flex-3" />
+                <input type="text" id="dpath" placeholder="File Path" class="form-control flex-3" />
+            </div>
+            <div class="form-row">
+                <input type="text" id="ddescription" placeholder="Description (Optional)" class="form-control flex-1" />
+                <button type="button" id="btnAddDoc" onclick="submitDoc()" class="btn btn-primary btn-submit"><i class="fa-solid fa-check"></i> Add Doc</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input class="search-box" type="text" id="search" placeholder="Search resources..." onkeyup="search()" />
+    </div>
+
+    <!-- 🔥 VIEW 1: MAIN DASHBOARD (4 Big Cards) -->
+    <div id="dashboard-view" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+
+        <!-- PRODUCTION -->
+        <div class="card dept-card" onclick="openDepartment('prod')" style="border-top: 5px solid #f59e0b;">
+            <div class="dept-icon-circle" style="background: #fffbeb; color: #f59e0b;">
+                <i class="fa-solid fa-gears"></i>
+            </div>
+            <h2>Production & Ops</h2>
+            <p class="dept-desc">Manage daily operations, quality control, and safety reports.</p>
+            <p class="dept-sub">Production, Quality, Safety, Logistics</p>
+            <div class="dept-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+
+        <!-- HR -->
+        <div class="card dept-card" onclick="openDepartment('hr')" style="border-top: 5px solid #ec4899;">
+            <div class="dept-icon-circle" style="background: #fce7f3; color: #ec4899;">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h2>HR & Admin</h2>
+            <p class="dept-desc">Employee portal, finance tools, and administrative policies.</p>
+            <p class="dept-sub">HR Portal, Finance</p>
+            <div class="dept-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+
+        <!-- DIGITALIZATION -->
+        <div class="card dept-card" onclick="openDepartment('digi')" style="border-top: 5px solid #3b82f6;">
+            <div class="dept-icon-circle" style="background: #eff6ff; color: #3b82f6;">
+                <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h2>MES & Digitalization</h2>
+            <p class="dept-desc">MES, data analytics, and digital collaboration platforms.</p>
+            <p class="dept-sub">MES, PowerBI, SharePoint</p>
+            <div class="dept-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+
+        <!-- 🔥 IT SUPPORT -->
+        <div class="card dept-card" onclick="openDepartment('it')" style="border-top: 5px solid #06b6d4;">
+            <div class="dept-icon-circle" style="background: #ecfeff; color: #06b6d4;">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            <h2>IT Support</h2>
+            <p class="dept-desc">Technical assistance, hardware requests, and software issues.</p>
+            <p class="dept-sub">IT Helpdesk, Support</p>
+            <div class="dept-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+
+    </div>
+
+    <!-- 🔥 VIEW 2: DEPARTMENT DETAIL (Hidden by default) -->
+    <div id="department-detail-view" class="hidden">
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 20px;">
+                <h2 id="dept-title" style="margin:0; border:none; padding:0;">Department Name</h2>
+                <button class="btn btn-secondary" onclick="closeDepartment()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+                </button>
+            </div>
+            <!-- Links for the selected department go here -->
+            <div id="dept-content"></div>
+        </div>
+    </div>
+
+    <!-- DOCUMENTS SECTION (With Spacing) -->
+    <div class="card" style="margin-top: 90px;">
+        <h2><i class="fa-solid fa-folder-open" style="color:#64748b;"></i> Documents Repository</h2>
+        <div id="docs-container"></div>
+    </div>
+
+    <div class="footer-note">Bangalore Plant Internal Portal • Secure Environment</div>
+</div>
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    function toggleHelp() { document.getElementById('helpSection').classList.toggle('hidden'); }
+    async function logout() {
+        try { await fetch('/api/admin/logout', { method: 'POST' }); window.location.reload(); }
+        catch (error) { window.location.reload(); }
+    }
+    (function() {
+        var link = document.querySelector("link[rel~='icon']");
+        if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+        }
+        link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>";
+    })();
+</script>

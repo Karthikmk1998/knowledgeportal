@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "PSVApp",
+    "Path": "https://central.confluence.automotive.cloud/spaces/SPACE3108/pages/2835724904/PSV+Automation+App",
+    "Category": "MES",
+    "Desc": "Used in TCU"
+  },
+  {
+    "Name": "SFMS - Digital checksheet",
+    "Path": "https://central.confluence.automotive.cloud/spaces/SPACE3108/pages/2835724871/Shopfloor+Management+System+Digital+Checksheet",
+    "Category": "MES",
+    "Desc": "Shopfloor Management System is a local web based solution to create and manage production check sheets digitally"
+  },
+  {
+    "Name": "Face Recognition",
+    "Path": "https://central.confluence.automotive.cloud/spaces/SPACE3108/pages/2835724881/Facet+Face+Recognition",
+    "Category": "MES",
+    "Desc": "Facet"
+  }
+]

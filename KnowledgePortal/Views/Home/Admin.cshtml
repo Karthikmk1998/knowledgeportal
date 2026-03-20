@@ -1,0 +1,65 @@
+<script>
+    function addLink() {
+        const title = document.getElementById('ltitle').value.trim();
+        const url = document.getElementById('lurl').value.trim();
+        const category = document.getElementById('lcategory').value;
+
+        const tags = Array.from(document.querySelectorAll('.ltag:checked'))
+            .map(t => t.value);
+
+        if (!title || !url || !category) {
+            alert('Title, URL and Category are required');
+            return;
+        }
+
+        fetch('/api/admin/link/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: title,
+                url: url,
+                category: category,
+                tags: tags
+            })
+        }).then(() => {
+            alert('Link added');
+            ltitle.value = '';
+            lurl.value = '';
+            lcategory.value = '';
+            document.querySelectorAll('.ltag').forEach(t => t.checked = false);
+            loadData();
+        });
+    }
+
+    function addDoc() {
+        const name = document.getElementById('dname').value.trim();
+        const path = document.getElementById('dpath').value.trim();
+        const category = document.getElementById('dcategory').value;
+
+        const tags = Array.from(document.querySelectorAll('.dtag:checked'))
+            .map(t => t.value);
+
+        if (!name || !path || !category) {
+            alert('Name, Path and Category are required');
+            return;
+        }
+
+        fetch('/api/admin/doc/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: name,
+                path: path,
+                category: category,
+                tags: tags
+            })
+        }).then(() => {
+            alert('Doc added');
+            dname.value = '';
+            dpath.value = '';
+            dcategory.value = '';
+            document.querySelectorAll('.dtag').forEach(t => t.checked = false);
+            loadData();
+        });
+    }
+</script>

@@ -1,0 +1,80 @@
+[
+  {
+    "Title": "HRMS",
+    "Url": "https://hrms-india.automotive-wan.com/AAC/Employee2/Dashboard",
+    "Category": "HR",
+    "Desc": "Attendance link"
+  },
+  {
+    "Title": "IT Digital Support",
+    "Url": "https://automotive-rsso.onbmc.com/rsso/start#/page/rmndk0c3",
+    "Category": "IT SUPPORT",
+    "Desc": "All internal using application"
+  },
+  {
+    "Title": "MES_Plant_Portal",
+    "Url": "https://igate4-plantportal.bq.prod.e2c.int.automotive-wan.com/iGate/mes_plant_portal",
+    "Category": "MES",
+    "Desc": "Bangalore MES Production"
+  },
+  {
+    "Title": "MES_Reporting",
+    "Url": "https://igate4-mesrep.bq.prod.e2c.int.automotive-wan.com/iGate/mes_reporting",
+    "Category": "MES",
+    "Desc": "MES Reporting provides real-time data from the production floor"
+  },
+  {
+    "Title": "SAPMES",
+    "Url": "https://igate4-sapmesrep.bq.prod.e2c.int.automotive-wan.com/iGate/sapmes",
+    "Category": "MES",
+    "Desc": "Interface Between SAP and MES"
+  },
+  {
+    "Title": "SAP SuccessFactors",
+    "Url": "https://hcm-eu20.hr.cloud.sap/sf/start?_s.crb=Z2z%252fTCwimC7Bx3H%252bhdwq%252bZu%252bvzJeOQmUMnTROncCLIA%253d",
+    "Category": "HR",
+    "Desc": "Organizational suggestions"
+  },
+  {
+    "Title": "MyHR Portal",
+    "Url": "https://portal.myhr.aumovio.com/hc/en-us",
+    "Category": "HR",
+    "Desc": "Tickets and quick links related to HR"
+  },
+  {
+    "Title": "MES Downtime-PowerBI",
+    "Url": "https://app.powerbi.com/groups/me/reports/33dcb916-bb82-48cc-a330-15f3d1901ef0/ReportSection?ctid=3bd97919-57c3-48d3-9e9a-8e4c01614a8f&experience=power-bi",
+    "Category": "POWER BI",
+    "Desc": "we can check MES related downtime"
+  },
+  {
+    "Title": "RADS",
+    "Url": "https://rads.bq.prod.e2c.int.automotive-wan.com/",
+    "Category": "MES",
+    "Desc": "Used to Scarp and ANR activities"
+  },
+  {
+    "Title": "E - Sign",
+    "Url": "https://esign.int.automotive-wan.com/esign/",
+    "Category": "IT SUPPORT",
+    "Desc": ""
+  },
+  {
+    "Title": "SFMS - Digital checksheet",
+    "Url": "http://10.219.111.49/ShopFloorMS/",
+    "Category": "PRODUCTION",
+    "Desc": ""
+  },
+  {
+    "Title": "vlib",
+    "Url": "https://vlib.automotive.cloud/line-board",
+    "Category": "PRODUCTION",
+    "Desc": "All line information Board"
+  },
+  {
+    "Title": "Phonebook",
+    "Url": "https://phonebook.int.automotive-wan.com/",
+    "Category": "IT SUPPORT",
+    "Desc": "All Employee information available"
+  }
+]

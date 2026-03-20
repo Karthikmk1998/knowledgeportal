@@ -1,0 +1,12 @@
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4data_4docs_1json__JsonSchema="https://acp-protocol.dev/schemas/v1/config.schema.json" /></VisualStudio></ProjectExtensions>
+
+</Project>
